@@ -1,0 +1,22 @@
+CREATE TABLE modalidade(       #criar_Tabela
+ID_modalidade INT NOT NULL AUTO_INCREMENT, #
+nome VARCHAR(200) NOT NULL, #nãoVazio
+valor DOUBLE  NOT NULL,
+PRIMARY KEY(ID_modalidade)) ;
+
+
+INSERT INTO modalidade (nome, valor) #serveparainserir
+VALUES ("MUSCULAÇÃO", 90);
+
+INSERT INTO modalidade (nome, valor) 
+VALUES ("ZUMBA", 60);
+
+INSERT INTO modalidade (nome, valor)
+VALUES ("NATAÇÃO", 70);
+
+INSERT INTO modalidade (nome, valor) 
+VALUES ("karen", 0);
+
+SELECT * FROM modalidade
+
+DELETE FROM modalidade WHERE id_modalidade=6;
