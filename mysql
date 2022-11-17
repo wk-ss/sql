@@ -1,0 +1,64 @@
+CREATE DATABASE Aula04_Kadsa;
+USE Aula04_Kadsa;
+
+CREATE table Alunos(
+Matricula INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(260) NOT NULL,
+telefone CHAR(15) NOT NULL
+);
+
+INSERT INTO alunos (nome, telefone)
+VALUES ("Carlos", "988665577"), ("Margarida", "985467890"), ("Wellington", "986543890"), ("Boris", "956789090");
+
+SELECT * FROM alunos;
+
+ALTER TABLE alunos 
+ADD CPF CHAR(15) NOT NULL;
+
+UPDATE alunos SET CPF = "13387590056" WHERE Matricula = 1;
+
+UPDATE alunos SET CPF = "45690078945" WHERE Matricula = 2;
+
+UPDATE alunos SET CPF = "90768067845" WHERE Matricula = 3;
+
+UPDATE alunos SET CPF = "67899766678999" WHERE Matricula = 4;
+ALTER TABLE alunos DROP cpf;
+DELETE FROM alunos WHERE nome="menino Ney", limite 2;
+
+main
+import mysql.connector
+banco = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="cdd12345",
+    database="Aula04_Kadsa"
+)
+
+cursor= banco.cursor()
+while True:
+ opcoes=int(input("digite 1(para inserir dados), 2(para inserir tabelas:  ou 3(para deletar linha): "))
+ if opcoes==1:
+    nome = str(input("qual o nome do usuário? "))
+    telefone = str(input("qual o telefone do usuário? "))
+    sql = "INSERT INTO alunos (nome, telefone) VALUES(%s,%s)"
+    data = (nome, telefone)
+    cursor.execute(sql, data)
+    banco.commit()
+ elif opcoes== 2:
+    pesquisa = 'select * from alunos'
+    cursor.execute(pesquisa)
+    resultado = cursor.fetchall()  # fetchall recebe tudo da pesquisa e retorna através de
+    # uma tupla(lista que não pode alterar valor).
+    for x in resultado:
+        print(x)
+
+ elif opcoes== 3:
+  delete= int(input("digite a linha que será deletada: "))
+  deletar= f'DELETE FROM alunos WHERE matricula={delete}'
+  cursor.execute(deletar)
+  banco.commit()
+
+ elif opcoes==5:
+    break
+cursor.close()
+banco.close()
